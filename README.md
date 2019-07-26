@@ -11,7 +11,7 @@ todet is a django web application that let user detect objects/text and extract 
 
 ### How to run in your machine
 
-- Download ```yolov3.weights```  and place it under ```objectdet/lib/yolo-coco``` folder
+- Download ```yolov3.weights```  and place it under ```objectdet/lib/yolo-coco``` folder [download it here](https://pjreddie.com/media/files/yolov3.weights)
 - Download ```frozen_east_text_detection.pb``` and place it under ```objectdet/lib/east```
 - Install tessaract-ocr in your machine
 - Make sure you have pip installed and run ```pip install -r requirements.txt``` inside the project root folder to install
