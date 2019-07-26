@@ -1,0 +1,179 @@
+{% extends 'base/base.html' %} {% load staticfiles %} {% block page %}
+todet|Home {% endblock %} {% block content %}
+<div class="main-page">
+  {% if success %}
+  <div class="text-center alert alert-success" role="alert">
+    {{ success }}
+  </div>
+  {% endif %}
+  <div class="container intro">
+    <p>
+      Welcome to <a href="#">Todet.net</a>, an online Texts and Objects
+      detection/recognition combo tool, where you can detect and recognize
+      <b>objects</b>, or extracts <b>texts</b> from image easily by just a
+      click. Just upload your image and do the appropriate clicking and our
+      system will handle the hard part.
+    </p>
+    <br />
+  </div>
+  <div class="container">
+    <li>Step 1: Upload an Image</li>
+    <div class="container upload-form">
+      <form
+        method="POST"
+        action="{% url 'upload' %}"
+        enctype="multipart/form-data"
+        novalidate=""
+      >
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="uimage">Upload your image</label>
+          <input
+            type="file"
+            class="form-control-file"
+            id="uimage"
+            name="image"
+          />
+          {% if error %}
+          <span class="text-warning">{{ error }}</span>
+          {% endif %}
+          <br />
+          <input type="submit" class="btn btn-success" value="upload" />
+        </div>
+      </form>
+    </div>
+    <li>Step 2: Inspect an Image</li>
+    <div class="container">
+      <div class="form-group row">
+        <div class="preview-img col-md-6">
+          <span>Preview and Inspect</span><br />
+          {% if image %}
+          <a href="{{ image.image.url }}" class="image-preview">
+            <img src="{{ image.image.url }}" alt="{{ image.id }}" />
+          </a>
+          <div class="engines row">
+            <form method="POST" action="{% url 'detection'%}" class="col-6">
+              {% csrf_token %}
+              <input
+                type="submit"
+                class="btn btn-success mt-3"
+                value="Detect Objects & Texts"
+              />
+            </form>
+            <form method="POST" action="{% url 'ocr'%}" class="col-6">
+              {% csrf_token %}
+              <input
+                type="submit"
+                class="btn btn-success mt-3 pr-1 pl-1"
+                value="Extract Texts From This Image"
+              />
+            </form>
+          </div>
+          {% else %}
+          <img src="{% static 'images/thumbnail.png' %}" alt="preivew" />
+          {% endif %}
+        </div>
+        <div class="col-md-6 pl-5">
+          <div class="container howtouse ml-4">
+            <h4>How to use</h4>
+            <li>1. Choose an image and click the <code>upload</code> button</li>
+            <li>
+              2. Your uploaded image will show up, click
+              <code><cite>'Detect Objects & Texts'</cite></code> button to
+              detects objects or
+              <code><cite>'Extract Texts From This Image'</cite></code> button
+              to extracts texts
+            </li>
+            <li>
+              3. Wait for the process to finish, then scroll down to see results
+            </li>
+          </div>
+        </div>
+      </div>
+    </div>
+    <li>Step 3: Results</li>
+    <div class="results preview-img container row">
+      {% if odet %} {% if pImage %}
+      <div class="col-md-6">
+        <span>Original</span>
+        <a href="{{ oImage.image.url }}" class="image-preview">
+          <img
+            class="image-preview"
+            src="{{ oImage.image.url }} "
+            alt="preivew"
+          />
+        </a>
+      </div>
+      <div class="col-md-6">
+        <span>Image with detected objects</span>
+        <a
+          href="../../../media/images/processed_image/result.jpg"
+          class="image-preview"
+        >
+          <img
+            src="../../../media/images/processed_image/result.jpg"
+            alt="preivew"
+            class="images"
+          />
+        </a>
+      </div>
+      <div class="container mt-4">
+        <h4><b>Process summary:</b></h4>
+        <span>Time taken: {{ time }} Seconds</span>
+      </div>
+      {% endif %} {% endif %} {% if ocr %}
+      <div class="col-md-6">
+        <span>Original</span>
+        <a href="{{ oimage.image.url }}" class="image-preview">
+          <img
+            class="image-preview"
+            src="{{ oimage.image.url }} "
+            alt="preivew"
+          />
+        </a>
+        <div class="container mt-4">
+          <h4><b>Process summary:</b></h4>
+          <span>Time taken: {{ time }} Seconds</span>
+        </div>
+      </div>
+      <div class="col-md-6 input-group">
+        <form
+          action="{% url 'save' %}"
+          method="post"
+          class="container-fluid"
+          autocomplete="off"
+        >
+          {% csrf_token %}
+          <div>
+            <span>Detected Texts(Edit):</span>
+          </div>
+          <input
+            type="text"
+            class="form-control mb-2"
+            value="Edit this Title"
+            name="title"
+            autocomplete="off"
+            required
+          />
+          <textarea
+            class="form-control"
+            rows="20"
+            col="12"
+            name="text"
+            required
+            >{{ texts }}</textarea
+          >
+          <br />
+          <input
+            type="submit"
+            class="btn btn-success"
+            value="Save to Database"
+          />
+        </form>
+      </div>
+    </div>
+    {% endif %}
+    <div class="container"></div>
+  </div>
+</div>
+{% endblock %}

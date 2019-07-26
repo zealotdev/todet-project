@@ -1,0 +1,92 @@
+/* Custom Styling */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+/* main {
+  height: 80em;
+} */
+li {
+  list-style-type: none;
+  color: #359430;
+  font-size: 1.3em;
+}
+.loader {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader.hidden {
+  animation: fadeOut 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+  100%{
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+.navbar {
+  height: 10vh;
+  width: 100%;
+  align-items: center;
+}
+
+.navbar .logo img{
+  height: 4.5em;
+  width: 100%;
+}
+
+.intro {
+  margin: 2em auto 3em auto;
+}
+
+.intro p {
+  text-align: justify;
+  font-size: 1.3em;
+}
+
+.intro p a {
+  color: #359430;
+  text-decoration: none;
+}
+
+.upload-form {
+  width: 100%;
+}
+.upload-form div {
+  width: 25%;
+}
+.upload-form div input{
+  margin-top: .3em;
+}
+
+.preview-img {
+    margin: .5em 0 3em 0;
+}
+.preview-img img{
+
+  width: 100%;
+  height: 480px;
+  border-radius: .4em;
+}
+/* FOOTER */
+.footer {
+  height: 4em;
+  margin: 4em 0 auto .2em 0 auto;
+  text-align: center;
+  line-height: 4em;
+}
+.footer a {
+  color: #359430;
+  text-decoration: none;
+}

@@ -1,0 +1,9 @@
+Django==2.2.2
+imutils==0.5.2
+numpy==1.16.4
+opencv-python==4.1.0.25
+Pillow==6.0.0
+pipdeptree==0.13.2
+pytesseract==0.2.7
+pytz==2019.1
+sqlparse==0.3.0

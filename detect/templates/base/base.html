@@ -1,0 +1,60 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" href="{% static 'images/logo.png' %}" />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="{% static 'bootstrap/css/bootstrap.min.css' %}"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- Custom Styling -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <!-- Magnific Popup CSS -->
+    <link
+      rel="stylesheet"
+      href="{% static 'magnific-popup/magnific-popup.css' %}"
+    />
+
+    <title>{% block page %}{% endblock %}</title>
+  </head>
+
+  <body>
+    <main>
+      <!-- Navbar -->
+      <div class="container">
+        <nav class="navbar">
+          <a href="{% url 'home' %}" class="logo"
+            ><img src="{% static 'images/logo.png' %}" alt="onet"
+          /></a>
+        </nav>
+        <hr />
+        <div class="loader">
+          <img src="{% static 'images/preloader.gif' %}" alt="loading ..." />
+        </div>
+        <div class="container">
+          {% block content %} {% endblock %}
+        </div>
+      </div>
+    </main>
+    <footer class="footer container">
+      <hr />
+      <span
+        >&copy; {% now 'Y'%} <b><a href="#">todet.net</a></b
+        >. All Rights Reserved</span
+      >
+    </footer>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <!-- magnific popup JS -->
+    <script src="{% static 'magnific-popup/jquery.magnific-popup.js' %}"></script>
+    <!-- Custon scripts -->
+    <script src="{% static 'js/custom.js' %}"></script>
+  </body>
+</html>
