@@ -2,7 +2,7 @@ Django==2.2.4
 imutils==0.5.2
 numpy==1.16.4
 opencv-python==4.1.0.25
-Pillow==6.0.0
+Pillow==8.2.0
 pipdeptree==0.13.2
 pytesseract==0.2.7
 pytz==2019.1
