@@ -1,6 +1,6 @@
 Django==2.2.4
 imutils==0.5.2
-numpy==1.16.4
+numpy==1.22.0
 opencv-python==4.1.0.25
 Pillow==6.0.0
 pipdeptree==0.13.2
